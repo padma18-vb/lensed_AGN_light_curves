@@ -20,6 +20,7 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$REPO_ROOT"
 
+# CHANGE THIS!!!!
 export RUBIN_SIM_DATA_DIR=/pscratch/sd/v/vpadma/rubin_sim_data
 echo "RUBIN_SIM_DATA_DIR=${RUBIN_SIM_DATA_DIR}"
 
@@ -30,10 +31,14 @@ LENS_IDX="${LENS_IDX:-2}"
 DATASET_NAME="${DATASET_NAME:-example_run}"
 OBSERVATION_MODE="${OBSERVATION_MODE:-regular_cadence}"
 PASSBAND_CONFIG="${PASSBAND_CONFIG:-configs/passband_config_3_bands.json}"
+# SET TO ~ 2 YEARS
 BASELINE_DAYS="${BASELINE_DAYS:-730}"
+# 1m mirror
 TELESCOPE_DIAMETER_M="${TELESCOPE_DIAMETER_M:-1.0}"
+# 2.4m mirror for scaling the zp
 REFERENCE_DIAMETER_M="${REFERENCE_DIAMETER_M:-2.4}"
 DIFFRACTION_WAVELENGTH_NM="${DIFFRACTION_WAVELENGTH_NM:-606}"
+# exposure time in seconds
 EXPOSURE_TIME="${EXPOSURE_TIME:-1200}"
 OUTPUT_DIR="${OUTPUT_DIR:-outputs}"
 

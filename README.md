@@ -31,10 +31,34 @@ lensed_agn_light_curves/
 ```
 
 ## Installation
+Create and activate a new environment using either conda or Python's built-in
+`venv` module.
+
+### Option 1: conda
 
 ```bash
+conda create -n lensed-agn-light-curves python=3.11
+conda activate lensed-agn-light-curves
 pip install -r requirements.txt
 ```
+
+### Option 2: Python `venv`
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+NOTE: I have hashed out the rubin sim installation in the requirements.txt. I would suggest you directly follow the instructions for rubin-sim installation [here](https://rubin-sim.lsst.io/installation.html).
+Repoduced here:
+```
+pip install rubin-sim
+scheduler_download_data
+rs_download_data
+```
+ALSO: in `run_light_curve_gen.sh` make sure to point where the rubin sim data is stored.
 
 ## making light curves
 Currently, the pipeline does need a `csv` file that has a bunch of physics corresponding to the the microlensing, the accretion disk physics (e.g black hole mass). This output is easily generated through [SLSim](https://github.com/LSST-strong-lensing/slsim). We have already included a catalog of lenses that we expect to find with Rubin (sampled over a 21000sq deg region, so slighly oversampled). 

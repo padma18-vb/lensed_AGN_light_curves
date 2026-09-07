@@ -7,22 +7,11 @@ scipy
 scikit-image
 tqdm
 microlensing        # provides microlensing.IPM.ipm.IPM
-rubin-scheduler      # dependency of rubin_sim_pipeline (see note below)
-rubin-sim            # dependency of rubin_sim_pipeline (see note below)
+# rubin-scheduler      # dependency of rubin_sim_pipeline (see note below)
+# rubin-sim            # dependency of rubin_sim_pipeline (see note below)
+# for rubin sim please follow instructions here: https://rubin-sim.lsst.io/installation.html
 photerr             # LsstErrorModel -- used for the Rubin cadence's photometric error, only imported when --include_rubin/--rubin_only actually generates a rubin_cadence group
 
 # --- AMOEBA: install from the dev branch, not PyPI ---
 git+https://github.com/Henry-Best-01/Amoeba.git@dev
 
-# --- rubin_sim_pipeline: NOT a package, needs to be supplied separately ---
-# `cadence.py` does `from rubin_sim_pipeline import get_rubin_cadence`, but
-# `rubin_sim_pipeline` doesn't appear in a normal `pip list` at all -- it
-# looks like a local wrapper module around rubin-scheduler/rubin-sim
-# rather than something distributed on PyPI or GitHub. Installing
-# rubin-scheduler/rubin-sim above does not by itself provide it: add your
-# `rubin_sim_pipeline.py` (or package) to this repo, or put it on
-# PYTHONPATH, separately.
-#
-# rubin-scheduler/rubin-sim also require a local data directory before
-# any Rubin-cadence calls will work -- see "Rubin cadence setup" in the
-# README.
