@@ -1,0 +1,20 @@
+{
+  "u": {
+    "kind": "top_hat",
+    "lambda_min_nm": 300.0,
+    "lambda_max_nm": 500.0,
+    "resolution_nm": 1.0
+  },
+  "g": {
+    "kind": "top_hat",
+    "lambda_min_nm": 500.0,
+    "lambda_max_nm": 700.0,
+    "resolution_nm": 1.0
+  },
+  "r": {
+    "kind": "top_hat",
+    "lambda_min_nm": 700.0,
+    "lambda_max_nm": 900.0,
+    "resolution_nm": 1.0
+  }
+}
