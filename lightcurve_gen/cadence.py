@@ -1,10 +1,9 @@
 """
 Observation-time (cadence) helpers: regular grid, user-supplied CSV, and
-Rubin scheduler cadences, plus the shared baseline-day cutoff.
+Rubin scheduler cadences. They all end at whatever baseline_days is set to.
+Please let us know if you have feedback/spot any bugs!
+Contact: pv10@illinois.edu
 
-``get_random_rubin_ra_dec`` is a pure function (no instance state). The
-rest take the owning ``LightCurveGenerator`` instance (``gen``) since they
-need ``band_names``/``baseline_days``/``total_time``.
 """
 
 import numpy as np
@@ -16,6 +15,7 @@ from rubin_sim_pipeline import get_rubin_cadence
 
 
 def get_random_rubin_ra_dec(N=1):
+    """``get_random_rubin_ra_dec`` gives N random ra and dec within the LSST footprint."""
     ra_points = coord.Angle(np.random.uniform(low=0, high=360, size=N) * au.degree)
     ra_points = ra_points.wrap_at(180 * au.degree)
     p = (
@@ -39,6 +39,9 @@ def _apply_baseline_cut(gen, snapshot_timestamps):
 
 def get_rubin_observation_times_properties(gen, ra_points, dec_points,
                                             columns_required=['observationStartMJD', 'filter']):
+    """
+    specifically loads the observation times using rubin_sim
+    """
     rubin_df_output = get_rubin_cadence(ra_points.value, dec_points.value)
     missing_columns = [col for col in columns_required if col not in rubin_df_output.columns]
     print(f"Rubin cadence DataFrame columns: {rubin_df_output.columns.tolist()}")
@@ -61,6 +64,9 @@ def get_rubin_observation_times_properties(gen, ra_points, dec_points,
 
 def get_observation_times(gen, observation_mode, cadence_file=None, sampling_freq=3,
                            ra_points=None, dec_points=None):
+    """
+    Get observation times for the light curve generator based on the specified observation mode.
+    """
     if observation_mode == 'regular_cadence':
         # we are basically creating a random offset in times when different bands are observed
         offset = np.random.choice(np.arange(20), len(gen.band_names))

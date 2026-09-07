@@ -1,15 +1,13 @@
 """
-LightCurveGenerator: generates realistic lensed-quasar light curves using a
+LightCurveGenerator: generates lensed-quasar light curves using a
 snapshot method, supporting dual cadences (user + Rubin) sampled from the
 same underlying signal.
 
-This class owns instance state and the two things that are genuinely
-specific to orchestrating it: AMOEBA disk/driving-signal setup and the main
+Built on AMOEBA disk/driving-signal setup and the main
 snapshot-generation loop. Everything else (optics/noise, SED handling,
-cadence parsing, microlensing, HDF5 output) lives in the sibling modules
+cadence parsing, microlensing, HDF5 output) lives in other files
 (``optics``, ``sed``, ``cadence``, ``microlensing``, ``io_hdf5``) and is
-called directly from here (passing ``self`` where the function needs
-instance state) -- there are no delegating wrapper methods on the class.
+called directly from here (passing ``self`` where the function needs class info).
 
 If you need one of those functions from outside this class (e.g. to save
 a generator's output, or compute a photometric error), call the module
@@ -17,6 +15,9 @@ function directly with the generator instance, e.g.:
 
     from lightcurve_gen import io_hdf5
     io_hdf5.save_data(lc_generator, "output.h5")
+
+Please let us know if you have feedback/spot any bugs!
+Contact: pv10@illinois.edu
 """
 
 import contextlib

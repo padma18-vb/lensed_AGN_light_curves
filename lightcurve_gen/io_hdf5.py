@@ -1,10 +1,6 @@
 """
-HDF5 output.
-
-Both functions take the owning ``LightCurveGenerator`` instance (``gen``)
-as their first argument -- ``save_data`` is inherently a "dump most of the
-generator's state" operation, so passing the instance through is simpler
-than exploding it into a 20-argument function call.
+Writes the generator.py light curve data into a HDF5 and stores some metadata 
+about the object.
 
 Two noise models are supported per cadence group:
 - The generic aperture/exposure-time model (``optics.compute_analytical_error``),
@@ -13,6 +9,8 @@ Two noise models are supported per cadence group:
   error (``optics.blending_error``), used for the Rubin cadence -- ground-based
   imaging always suffers some deblending, so this is applied unconditionally
   whenever an LsstErrorModel is passed in, not gated behind an optional flag.
+Please let us know if you have feedback/spot any bugs!
+Contact: pv10@illinois.edu
 """
 
 import numpy as np

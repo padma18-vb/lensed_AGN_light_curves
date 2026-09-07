@@ -2,12 +2,13 @@
 Passband transmission loading, quasar SED handling, and flux -> AB magnitude
 conversion.
 
-These functions take the owning ``LightCurveGenerator`` instance (``gen``)
-as their first argument since they read/write several pieces of instrument
-and cosmology state (band configuration, redshift, the accretion-disk
-object, the interpolated SED). ``get_quasar_sed_at_source_redshift`` sets
-``gen.f_nu_sed``, ``gen.lambda_sed_in_obs_frame``, ``gen.fnu_interp`` and
-``gen.transmission`` directly, matching the original method's behavior.
+Note: we scale the outputs by the static flux map (the variable map flux is 
+not calibrated)
+We also extrapolate the SED in cases where we want to observe high-redshift AGN
+in the UV. 
+We looked a sample of light curves to make sure the variability was not overestimated
+Please let us know if you have feedback/spot any bugs!
+Contact: pv10@illinois.edu
 """
 
 import numpy as np

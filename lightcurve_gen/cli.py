@@ -3,6 +3,9 @@ Command-line entry point: reads one lens's parameters from a CSV, runs
 LightCurveGenerator, and writes the result to HDF5.
 
 Run as: python -m lightcurve_gen.cli --csv_file ... --lens_idx ... ...
+
+Please let us know if you have feedback/spot any bugs!
+Contact: pv10@illinois.edu
 """
 
 import argparse
@@ -71,6 +74,8 @@ def main():
     exposure_time = args.exposure_time
 
     data = pd.read_csv(csv_file, index_col=0).loc[lens_idx]
+    ### NOTE! these are all the parameters we read in , but can always make the model more flexible and
+    ### read in whatever we want to sample
     num_images = int(data['num_ps_images'])
     kappa_star = np.array(data[[f'micro_kappa_star_{i}' for i in range(num_images)]])
     kappa = np.array(data[[f'micro_kappa_tot_{i}' for i in range(num_images)]])

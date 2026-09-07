@@ -1,11 +1,7 @@
 """
 Instrument-optics and photometric-error helpers.
-
-These are plain functions (no class dependency) except where noted —
-``compute_analytical_error`` and ``blending_error`` take the owning
-``LightCurveGenerator`` instance (``gen``) as their first argument because
-they read several scalar instrument settings off it; that's simpler than
-exploding each into a 4-5 argument function for no real benefit.
+Please let us know if you have feedback/spot any bugs!
+Contact: pv10@illinois.edu
 """
 
 import numpy as np

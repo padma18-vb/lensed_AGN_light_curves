@@ -3,10 +3,13 @@ Microlensing magnification-map construction, track extraction, and
 per-snapshot magnification sampling.
 
 ``generate_mag_tracks``, ``_sample_magnifications_at_times`` and
-``_build_microlensed_snapshots`` are pure functions (they don't touch any
-instance state in the original code — only their arguments). The other two
-take the owning ``LightCurveGenerator`` instance (``gen``) since they need
-``kappa``/``kappa_star``/``shear``/``ipms``/``baseline_days``.
+``_build_microlensed_snapshots`` don't depend on the light curve generator 
+class. 
+
+Function generating the micorlensing maps do need access to the light curve
+generator class (for kappa_star, shear etc).
+Please let us know if you have feedback/spot any bugs!
+Contact: pv10@illinois.edu
 """
 
 import numpy as np
